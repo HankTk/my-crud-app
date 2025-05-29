@@ -1,0 +1,68 @@
+<h2 mat-dialog-title>{{dialogTitle}}</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content class="dialog-content">
+    <div class="form-fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter name">
+        @if (form.get('name')?.hasError('required')) {
+          <mat-error>Name is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" placeholder="Enter username">
+        @if (form.get('username')?.hasError('required')) {
+          <mat-error>Username is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" placeholder="Enter password">
+        @if (form.get('password')?.hasError('required')) {
+          <mat-error>Password is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" placeholder="Enter description" rows="3"></textarea>
+        @if (form.get('description')?.hasError('required')) {
+          <mat-error>Description is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>URL</mat-label>
+        <input matInput formControlName="url" placeholder="Enter URL">
+        @if (form.get('url')?.hasError('required')) {
+          <mat-error>URL is required</mat-error>
+        }
+        @if (form.get('url')?.hasError('pattern')) {
+          <mat-error>Please enter a valid URL</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" multiple>
+          <mat-option value="active">Active</mat-option>
+          <mat-option value="inactive">Inactive</mat-option>
+        </mat-select>
+        @if (form.get('status')?.hasError('required')) {
+          <mat-error>Status is required</mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+      {{data._id ? 'Update' : 'Create'}}
+    </button>
+  </mat-dialog-actions>
+</form> 

@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Account Management</h1>
+
+  <app-data-table
+    [data]="accounts"
+    [loading]="isLoading"
+    [error]="error"
+    [displayedColumns]="displayedColumns"
+    [showAddButton]="true"
+    [addButtonLabel]="'Add Account'"
+    [noDataMessage]="'No accounts found. Click the Add Account button to create one.'"
+    (add)="openAccountDialog()"
+    (edit)="openAccountDialog($event)"
+    (delete)="deleteAccount($event)">
+  </app-data-table>
+</div> 

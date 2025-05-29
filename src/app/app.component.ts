@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AccountListComponent } from './components/account-list/account-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatProgressSpinnerModule,
+    AccountListComponent
+  ],
+  template: `
+    <app-account-list></app-account-list>
+  `,
+  styles: []
 })
 export class AppComponent {
   title = 'my-crud-app';
-}
+} 
